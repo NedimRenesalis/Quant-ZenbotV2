@@ -29,13 +29,40 @@ if [ "$CURRENT_BRANCH" != "main" ]; then
   }
 fi
 
+# Stash any local changes
+log "Stashing local changes..."
+git stash || {
+  log "Warning: Failed to stash changes. Trying to continue anyway."
+}
+
+# Handle untracked files
+log "Handling untracked files..."
+if [ -f "deploy.sh" ]; then
+  log "Backing up deploy.sh..."
+  cp deploy.sh deploy.sh.bak
+fi
+
 # Pull the latest changes
 log "Pulling latest changes from GitHub..."
-git pull origin main || {
+git pull origin main --force || {
   log "Error: Failed to pull from GitHub."
+  # Restore backed up files if needed
+  if [ -f "deploy.sh.bak" ]; then
+    log "Restoring deploy.sh from backup..."
+    cp deploy.sh.bak deploy.sh
+    chmod +x deploy.sh
+  fi
   exit 1
 }
 log "Successfully pulled latest changes."
+
+# Restore backed up files if needed
+if [ -f "deploy.sh.bak" ]; then
+  log "Restoring deploy.sh from backup..."
+  cp deploy.sh.bak deploy.sh
+  chmod +x deploy.sh
+  rm deploy.sh.bak
+fi
 
 # Install/update Node.js dependencies
 log "Installing/updating Node.js dependencies with npm ci..."

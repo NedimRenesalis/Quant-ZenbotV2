@@ -55,8 +55,8 @@ app.post('/webhook', verifyGitHubSignature, (req, res) => {
       console.log(`Push to ${TARGET_BRANCH} detected. Triggering deployment...`);
       
       // Execute the deployment script
-      // Pass the repository path as an argument or environment variable if the script needs it
-      exec(`sh ${DEPLOY_SCRIPT_PATH} ${REPO_PATH}`, (error, stdout, stderr) => {
+      // Replace the exec line with this more explicit version
+      exec('/bin/bash ' + DEPLOY_SCRIPT_PATH, (error, stdout, stderr) => {
         if (error) {
           console.error(`Deployment script error: ${error.message}`);
           console.error(`stderr: ${stderr}`);

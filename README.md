@@ -1,4 +1,4 @@
-This project is now renamed Quant_ZenbotV2 after a five months complete overhaul.
+This project is now renamed Quant_ZenbotV2 after a five months complete overhaul. It mirrors strategy and parameters restraints for trading.
 
 > “To follow the path, look to the master, follow the master, walk with the master, see through the master, become the master.”
 > – Zen Proverb
