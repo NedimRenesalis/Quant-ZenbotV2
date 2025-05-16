@@ -1,6 +1,4 @@
-WARNING: project is no longer actively maintained, make sure to update any dependencies if you plan on using this in your project.
-
-![zenbot logo](assets/logo.png)
+This project is now renamed Quant_ZenbotV2 after a five months complete overhaul.
 
 > “To follow the path, look to the master, follow the master, walk with the master, see through the master, become the master.”
 > – Zen Proverb
