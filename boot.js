@@ -37,28 +37,15 @@ module.exports = function (cb) {
   var eventBus = new EventEmitter()
   zenbot.conf.eventBus = eventBus
 
-  var authStr = '', authMechanism, connectionString
+  // Use localhost for MongoDB since we've exposed the port in docker-compose
+  let connectionString = 'mongodb://localhost:27017/zenbot4'
+  console.log('Using MongoDB connection string:', connectionString)
 
-  if(zenbot.conf.mongo.username){
-    authStr = encodeURIComponent(zenbot.conf.mongo.username)
-
-    if(zenbot.conf.mongo.password) authStr += ':' + encodeURIComponent(zenbot.conf.mongo.password)
-
-    authStr += '@'
-
-    // authMechanism could be a conf.js parameter to support more mongodb authentication methods
-    authMechanism = zenbot.conf.mongo.authMechanism || 'DEFAULT'
-  }
-
-  if (zenbot.conf.mongo.connectionString) {
-    connectionString = zenbot.conf.mongo.connectionString
-  } else {
-    connectionString = 'mongodb://' + authStr + zenbot.conf.mongo.host + ':' + zenbot.conf.mongo.port + '/' + zenbot.conf.mongo.db + '?' +
-      (zenbot.conf.mongo.replicaSet ? '&replicaSet=' + zenbot.conf.mongo.replicaSet : '' ) +
-      (authMechanism ? '&authMechanism=' + authMechanism : '' )
-  }
-
-  require('mongodb').MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true}, function (err, client) {
+  // Connect to MongoDB with minimal options
+  const MongoClient = require('mongodb').MongoClient
+  console.log('Attempting to connect to MongoDB at:', connectionString)
+  
+  MongoClient.connect(connectionString, function(err, client) {
     if (err) {
       console.error('WARNING: MongoDB Connection Error: ', err)
       console.error('WARNING: without MongoDB some features (such as backfilling/simulation) may be disabled.')
@@ -66,7 +53,8 @@ module.exports = function (cb) {
       cb(null, zenbot)
       return
     }
-    var db = client.db(zenbot.conf.mongo.db)
+    console.log('Successfully connected to MongoDB at ' + connectionString)
+    var db = client.db('zenbot4')
     _.set(zenbot, 'conf.db.mongo', db)
     cb(null, zenbot)
   })

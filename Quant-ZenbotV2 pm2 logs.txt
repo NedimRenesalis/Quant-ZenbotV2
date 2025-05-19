@@ -1,0 +1,715 @@
+root@zenbot2:~/Quant-ZenbotV2# pm2 logs Quant_ZenbotV2
+[TAILING] Tailing last 15 lines for [Quant_ZenbotV2] process (change the value with --lines option)
+/root/.pm2/logs/Quant-ZenbotV2-out.log last 15 lines:
+/root/.pm2/logs/Quant-ZenbotV2-error.log last 15 lines:
+1|Quant_Ze |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_Ze |     beforeHandshake: false,
+1|Quant_Ze |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_Ze |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_Ze |       errno: -111,
+1|Quant_Ze |       code: 'ECONNREFUSED',
+1|Quant_Ze |       syscall: 'connect',
+1|Quant_Ze |       address: '127.0.0.1',
+1|Quant_Ze |       port: 27017
+1|Quant_Ze |     }
+1|Quant_Ze |   }
+1|Quant_Ze | }
+1|Quant_Ze | (node:169937) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_Ze | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_Ze | (node:169937) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518217795,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:169963) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:169963) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+^C
+root@zenbot2:~/Quant-ZenbotV2# cd ..
+root@zenbot2:~# pm2 logs Quant_ZenbotV2
+[TAILING] Tailing last 15 lines for [Quant_ZenbotV2] process (change the value with --lines option)
+/root/.pm2/logs/Quant-ZenbotV2-out.log last 15 lines:
+/root/.pm2/logs/Quant-ZenbotV2-error.log last 15 lines:
+1|Quant_Ze |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_Ze |     beforeHandshake: false,
+1|Quant_Ze |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_Ze |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_Ze |       errno: -111,
+1|Quant_Ze |       code: 'ECONNREFUSED',
+1|Quant_Ze |       syscall: 'connect',
+1|Quant_Ze |       address: '127.0.0.1',
+1|Quant_Ze |       port: 27017
+1|Quant_Ze |     }
+1|Quant_Ze |   }
+1|Quant_Ze | }
+1|Quant_Ze | (node:169963) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_Ze | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_Ze | (node:169963) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518248069,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:169988) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:169988) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518278376,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:170002) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:170002) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518308640,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:170016) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:170016) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+^C
+root@zenbot2:~# pm2 monit
+root@zenbot2:~# pm2 logs Quant_ZenbotV2
+[TAILING] Tailing last 15 lines for [Quant_ZenbotV2] process (change the value with --lines option)
+/root/.pm2/logs/Quant-ZenbotV2-out.log last 15 lines:
+/root/.pm2/logs/Quant-ZenbotV2-error.log last 15 lines:
+1|Quant_Ze |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_Ze |     beforeHandshake: false,
+1|Quant_Ze |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_Ze |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_Ze |       errno: -111,
+1|Quant_Ze |       code: 'ECONNREFUSED',
+1|Quant_Ze |       syscall: 'connect',
+1|Quant_Ze |       address: '127.0.0.1',
+1|Quant_Ze |       port: 27017
+1|Quant_Ze |     }
+1|Quant_Ze |   }
+1|Quant_Ze | }
+1|Quant_Ze | (node:170318) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_Ze | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_Ze | (node:170318) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518914500,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:170341) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:170341) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518944773,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:170353) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:170353) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | /root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321
+1|Quant_ZenbotV2  |                 const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+1|Quant_ZenbotV2  |                                      ^
+1|Quant_ZenbotV2  | MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |     at Topology.selectServer (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:321:38)
+1|Quant_ZenbotV2  |     at async Topology._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:200:28)
+1|Quant_ZenbotV2  |     at async Topology.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/sdam/topology.js:152:13)
+1|Quant_ZenbotV2  |     at async topologyConnect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:233:17)
+1|Quant_ZenbotV2  |     at async MongoClient._connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:246:13)
+1|Quant_ZenbotV2  |     at async MongoClient.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:171:13)
+1|Quant_ZenbotV2  |     at async Function.connect (/root/Quant-ZenbotV2/node_modules/mongodb/lib/mongo_client.js:360:16) {
+1|Quant_ZenbotV2  |   errorLabelSet: Set(0) {},
+1|Quant_ZenbotV2  |   reason: TopologyDescription {
+1|Quant_ZenbotV2  |     type: 'Unknown',
+1|Quant_ZenbotV2  |     servers: Map(1) {
+1|Quant_ZenbotV2  |       'localhost:27017' => ServerDescription {
+1|Quant_ZenbotV2  |         address: 'localhost:27017',
+1|Quant_ZenbotV2  |         type: 'Unknown',
+1|Quant_ZenbotV2  |         hosts: [],
+1|Quant_ZenbotV2  |         passives: [],
+1|Quant_ZenbotV2  |         arbiters: [],
+1|Quant_ZenbotV2  |         tags: {},
+1|Quant_ZenbotV2  |         minWireVersion: 0,
+1|Quant_ZenbotV2  |         maxWireVersion: 0,
+1|Quant_ZenbotV2  |         roundTripTime: -1,
+1|Quant_ZenbotV2  |         minRoundTripTime: 0,
+1|Quant_ZenbotV2  |         lastUpdateTime: 518975065,
+1|Quant_ZenbotV2  |         lastWriteDate: 0,
+1|Quant_ZenbotV2  |         error: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |             at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |             at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |             at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |             at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |             at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |             at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |           errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |           beforeHandshake: false,
+1|Quant_ZenbotV2  |           [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |               at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |             errno: -111,
+1|Quant_ZenbotV2  |             code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |             syscall: 'connect',
+1|Quant_ZenbotV2  |             address: '127.0.0.1',
+1|Quant_ZenbotV2  |             port: 27017
+1|Quant_ZenbotV2  |           }
+1|Quant_ZenbotV2  |         },
+1|Quant_ZenbotV2  |         topologyVersion: null,
+1|Quant_ZenbotV2  |         setName: null,
+1|Quant_ZenbotV2  |         setVersion: null,
+1|Quant_ZenbotV2  |         electionId: null,
+1|Quant_ZenbotV2  |         logicalSessionTimeoutMinutes: null,
+1|Quant_ZenbotV2  |         maxMessageSizeBytes: null,
+1|Quant_ZenbotV2  |         maxWriteBatchSize: null,
+1|Quant_ZenbotV2  |         maxBsonObjectSize: null,
+1|Quant_ZenbotV2  |         primary: null,
+1|Quant_ZenbotV2  |         me: null,
+1|Quant_ZenbotV2  |         '$clusterTime': null,
+1|Quant_ZenbotV2  |         iscryptd: false
+1|Quant_ZenbotV2  |       }
+1|Quant_ZenbotV2  |     },
+1|Quant_ZenbotV2  |     stale: false,
+1|Quant_ZenbotV2  |     compatible: true,
+1|Quant_ZenbotV2  |     heartbeatFrequencyMS: 10000,
+1|Quant_ZenbotV2  |     localThresholdMS: 15,
+1|Quant_ZenbotV2  |     setName: null,
+1|Quant_ZenbotV2  |     maxElectionId: null,
+1|Quant_ZenbotV2  |     maxSetVersion: null,
+1|Quant_ZenbotV2  |     commonWireVersion: 0,
+1|Quant_ZenbotV2  |     logicalSessionTimeoutMinutes: null
+1|Quant_ZenbotV2  |   },
+1|Quant_ZenbotV2  |   code: undefined,
+1|Quant_ZenbotV2  |   [cause]: MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |       at Socket.<anonymous> (/root/Quant-ZenbotV2/node_modules/mongodb/lib/cmap/connect.js:285:44)
+1|Quant_ZenbotV2  |       at Object.onceWrapper (node:events:628:26)
+1|Quant_ZenbotV2  |       at Socket.emit (node:events:513:28)
+1|Quant_ZenbotV2  |       at emitErrorNT (node:internal/streams/destroy:157:8)
+1|Quant_ZenbotV2  |       at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+1|Quant_ZenbotV2  |       at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+1|Quant_ZenbotV2  |     errorLabelSet: Set(1) { 'ResetPool' },
+1|Quant_ZenbotV2  |     beforeHandshake: false,
+1|Quant_ZenbotV2  |     [cause]: Error: connect ECONNREFUSED 127.0.0.1:27017
+1|Quant_ZenbotV2  |         at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+1|Quant_ZenbotV2  |       errno: -111,
+1|Quant_ZenbotV2  |       code: 'ECONNREFUSED',
+1|Quant_ZenbotV2  |       syscall: 'connect',
+1|Quant_ZenbotV2  |       address: '127.0.0.1',
+1|Quant_ZenbotV2  |       port: 27017
+1|Quant_ZenbotV2  |     }
+1|Quant_ZenbotV2  |   }
+1|Quant_ZenbotV2  | }
+1|Quant_ZenbotV2  | (node:170367) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+1|Quant_ZenbotV2  | (Use `node --trace-warnings ...` to show where the warning was created)
+1|Quant_ZenbotV2  | (node:170367) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version

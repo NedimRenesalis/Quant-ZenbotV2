@@ -11,7 +11,7 @@ services:
     restart: always
     tty: true
     ports:
-      - "17365:17365"
+      - "27017:27017"
     depends_on:
       - mongodb
     environment:
@@ -19,6 +19,8 @@ services:
     stdin_open: true
   mongodb:
     image: mongo:latest
+    ports:
+      - "27017:27017"
     volumes:
       - ./database:/data/db
     command: mongod --bind_ip=0.0.0.0 --logpath=/dev/null
