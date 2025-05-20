@@ -416,7 +416,7 @@
                                 </tr>
                                 <% } %>
                                 <% if (my_trades) { %>
-                                <% my_trades.sort(function(a,b){return a.time > b.time ? -1 : 1;}).forEach(function(trade){ %>
+                                <% my_trades.sort(function(a,b){return a.time > b.time ? -1 : 1;}).slice(0, 30).forEach(function(trade){ %>
                                 <tr>
                                     <td><span class='text-<% if (trade.type == "buy") { %>success<% } else { %>danger<% } %>'><%= trade.type.toUpperCase() %></span></td>
                                     <td><%= new Intl.NumberFormat("en-US", {useGrouping: false, minimumFractionDigits: 8, maximumFractionDigits: 8}).format(trade.size) %> <%= asset.toUpperCase() %></td>
@@ -431,7 +431,7 @@
                                 <% }); %>
                                 <% } %>
                                 <% if (my_prev_trades) { %>
-                                <% my_prev_trades.reverse().forEach(function(trade){ %>
+                                <% my_prev_trades.reverse().slice(0, 30 - (my_trades ? Math.min(my_trades.length, 30) : 0)).forEach(function(trade){ %>
                                 <tr class="text-muted">
                                     <td><%= trade.type.toUpperCase() %></span></td>
                                     <td><%= new Intl.NumberFormat("en-US", {useGrouping: false, minimumFractionDigits: 8, maximumFractionDigits: 8}).format(trade.size) %> <%= asset.toUpperCase() %></td>

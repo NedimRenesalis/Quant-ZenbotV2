@@ -18,8 +18,15 @@ boot(function (err, zenbot) {
   if (err) {
     throw err
   }
-  program.version(zenbot.version)
-
+  
+  // Check if program.version is a function before calling it
+  if (typeof program.version === 'function') {
+    program.version(zenbot.version)
+  } else {
+    // For newer versions of commander
+    program.version = zenbot.version
+  }
+  
   var command_directory = './commands'
   fs.readdir(command_directory, function(err, files){
     if (err) {

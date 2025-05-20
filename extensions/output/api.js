@@ -4,6 +4,7 @@ module.exports = function api () {
   let random_port = require('random-port')
   let path = require('path')
   let moment = require('moment')
+  let rateLimit = null
 
   let run = function(reporter, tradeObject) {
     if (!reporter.port || reporter.port === 0) {
@@ -22,11 +23,29 @@ module.exports = function api () {
   }
 
   // set up rate limiter: maximum of fifty requests per minute
-  let RateLimit = require('express-rate-limit');
-  let limiter = new RateLimit({
-    windowMs: 1*60*1000, // 1 minute
-    max: 50
-  });
+  // Check if RateLimit is a constructor or a function
+  try {
+    const RateLimitModule = require('express-rate-limit');
+    // For newer versions of express-rate-limit
+    rateLimit = typeof RateLimitModule === 'function' ? 
+      RateLimitModule({
+        windowMs: 1 * 60 * 1000, // 1 minute
+        max: 60, // limit each IP to 60 requests per windowMs
+        standardHeaders: true,
+        legacyHeaders: false,
+        message: 'Too many requests, please try again later.'
+      }) : 
+      // For older versions where it might be a constructor
+      new RateLimitModule({
+        windowMs: 1 * 60 * 1000, // 1 minute
+        max: 60, // limit each IP to 60 requests per windowMs
+        delayMs: 0, // disable delaying - full speed until the max limit is reached
+        message: 'Too many requests, please try again later.'
+      });
+  } catch (e) {
+    console.error('Error setting up rate limit:', e.message);
+    console.log('Continuing without rate limiting...');
+  }
 
   let startServer = function(port, ip, tradeObject) {
     tradeObject.port = port
@@ -34,7 +53,11 @@ module.exports = function api () {
     app.set('views', path.join(__dirname+'/../../templates'))
     app.set('view engine', 'ejs')
 
-    app.use(limiter);
+    // Only use rate limiter if it was successfully created
+    if (rateLimit) {
+      app.use(rateLimit);
+    }
+    
     app.use('/assets', express.static(__dirname+'/../../templates/dashboard_assets'))
     app.use('/assets-wp', express.static(__dirname+'/../../dist/'))
     app.use('/assets-zenbot', express.static(__dirname+'/../../assets'))
