@@ -56,6 +56,9 @@
                 <div class="col-lg-9 col-sm-8 col-md-8 col-12">
                     <ol class="breadcrumb">
                         <li>Running for <%= moment(boot_time).toNow(true) %></li>
+                        <% if (typeof my_trades !== 'undefined' && typeof day_count !== 'undefined') { %>
+                        <li><%= my_trades.length %> trade<%= my_trades.length !== 1 ? 's' : '' %> over <%= day_count %> day<%= day_count !== 1 ? 's' : '' %> (avg <%= (my_trades.length / day_count).toFixed(2) %> trades/day)</li>
+                        <% } %>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -73,7 +76,7 @@
                             <div class="col-lg-4 col-12">
                                 <ul class="list-inline two-part">
                                     <li class="text-left" style="display:inline"><i class="ti-arrow-up"></i> <span class="text-info">Price</span></li>
-                                    <li class="text-left" style="display:inline"><i class="ti-arrow-up text-info"></i> <span><%= new Intl.NumberFormat("en-US", {useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 7}).format(period.close) %></span> <small><%= asset.toUpperCase() %></small></li>
+                                    <li class="text-left" style="display:inline"><i class="ti-arrow-up text-info"></i> <span><%= typeof period !== 'undefined' && period.close ? new Intl.NumberFormat("en-US", {useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 7}).format(period.close) : 'N/A' %></span> <small><%= asset.toUpperCase() %></small></li>
                                 </ul>
                             </div>
                             <% if (typeof quote != "undefined") { %>
@@ -151,7 +154,7 @@
                         </ul>
                     </div>
                 </div>
-                    <% if (typeof stats.error_rate != "undefined") { %>
+                    <% if (typeof stats.error_rate != "undefined" && typeof stats.win != "undefined" && typeof stats.losses != "undefined") { %>
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="white-box analytics-info">
                             <h3 class="box-title">Error Rate</h3>
@@ -472,9 +475,9 @@
                                     <th align="left">NAME</th>
                                     <th class='text-right'>PRICE (USD)</th>
                                     <th class='text-right hidden-xs'>PRICE (BTC)</th>
-                                    <th class='text-right hidden-xs hidden-sm'>VOLUME</th>
-                                    <th class='text-right hidden-xs hidden-sm'>MARKET CAP</th>
-                                    <th class='text-right hidden-xs hidden-sm'>CURRENT SUPPLY</th>
+                                    <th class='text-right hidden-xs'>VOLUME</th>
+                                    <th class='text-right hidden-xs'>MARKET CAP</th>
+                                    <th class='text-right hidden-xs'>CURRENT SUPPLY</th>
                                     <th class='text-right'>CHANGE 1H</th>
                                     <th class='text-right'>CHANGE 24H</th>
                                     <th class='text-right'>CHANGE 7D</th>

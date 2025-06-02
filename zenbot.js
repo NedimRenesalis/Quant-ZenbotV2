@@ -36,7 +36,8 @@ boot(function (err, zenbot) {
     var commands = files.map((file)=>{
       return path.join(command_directory, file)
     }).filter((file)=>{
-      return fs.statSync(file).isFile()
+      // Only include .js files and exclude .bak files
+      return fs.statSync(file).isFile() && file.endsWith('.js') && !file.endsWith('.bak.js') && !file.includes('.bak')
     })
 
     commands.forEach((file)=>{

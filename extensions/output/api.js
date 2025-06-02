@@ -66,6 +66,33 @@ module.exports = function api () {
       app.locals.moment = moment
       app.locals.deposit = tradeObject.options.deposit
       let datas = JSON.parse(JSON.stringify(objectWithoutKey(tradeObject, 'options'))) // deep copy to prevent alteration
+      
+      // Make sure period is defined
+      if (!datas.period && tradeObject.period) {
+        datas.period = tradeObject.period
+      } else if (!datas.period) {
+        datas.period = { close: 0 }
+      }
+      
+      // Ensure my_trades is defined
+      if (!datas.my_trades && tradeObject.my_trades) {
+        datas.my_trades = tradeObject.my_trades
+      } else if (!datas.my_trades) {
+        datas.my_trades = []
+      }
+      
+      // Ensure day_count is defined
+      if (!datas.day_count && tradeObject.day_count) {
+        datas.day_count = tradeObject.day_count
+      } else if (!datas.day_count) {
+        datas.day_count = 1
+      }
+      
+      // Ensure stats is defined
+      if (!datas.stats && tradeObject.stats) {
+        datas.stats = tradeObject.stats
+      }
+      
       res.render('dashboard', datas)
     })
 

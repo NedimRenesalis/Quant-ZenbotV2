@@ -73,7 +73,14 @@ module.exports = function (program, conf) {
       var tradesCollection = collectionService(conf).getTrades()
       var simResults = collectionService(conf).getSimResults()
 
+      // Ensure eventBus exists - create one if missing
       var eventBus = conf.eventBus
+      if (!eventBus) {
+        console.log('Warning: eventBus not found in conf, creating new EventEmitter')
+        const EventEmitter = require('events')
+        eventBus = new EventEmitter()
+        conf.eventBus = eventBus
+      }
 
       if (so.start) {
         so.start = moment(so.start, 'YYYYMMDDhhmm').valueOf()
@@ -242,7 +249,7 @@ module.exports = function (program, conf) {
             selector: so.selector.normalized
           },
           sort: { time: 1 },
-          limit: 100,
+          limit: 1000,
           timeout: false
         }
         if (so.end) {

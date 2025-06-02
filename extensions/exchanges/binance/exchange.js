@@ -7,20 +7,37 @@ const ccxt = require('ccxt')
 module.exports = function binance (conf) {
   var public_client, authed_client
 
-  function publicClient () {
-    if (!public_client) public_client = new ccxt.binance({ 'apiKey': '', 'secret': '', 'options': { 'adjustForTimeDifference': true } })
-    return public_client
-  }
-
-  function authedClient () {
-    if (!authed_client) {
-      if (!conf.binance || !conf.binance.key || conf.binance.key === 'YOUR-API-KEY') {
-        throw new Error('please configure your Binance credentials in ' + path.resolve(__dirname, 'conf.js'))
-      }
-      authed_client = new ccxt.binance({ 'apiKey': conf.binance.key, 'secret': conf.binance.secret, 'options': { 'adjustForTimeDifference': true }, enableRateLimit: true })
+function publicClient () {
+  if (!public_client) {
+    let options = { 'apiKey': '', 'secret': '', 'options': { 'adjustForTimeDifference': true } };
+    if (conf.binance && conf.binance.timeout) {
+      options.timeout = conf.binance.timeout;
     }
-    return authed_client
+    public_client = new ccxt.binance(options);
   }
+  return public_client;
+}
+
+
+function authedClient () {
+  if (!authed_client) {
+    if (!conf.binance || !conf.binance.key || conf.binance.key === 'YOUR-API-KEY') {
+      throw new Error('please configure your Binance credentials in ' + path.resolve(__dirname, 'conf.js'))
+    }
+    let options = { 
+      'apiKey': conf.binance.key, 
+      'secret': conf.binance.secret, 
+      'options': { 'adjustForTimeDifference': true }, 
+      enableRateLimit: true 
+    };
+    if (conf.binance.timeout) {
+      options.timeout = conf.binance.timeout;
+    }
+    authed_client = new ccxt.binance(options);
+  }
+  return authed_client;
+}
+
 
   /**
   * Convert BNB-BTC to BNB/BTC

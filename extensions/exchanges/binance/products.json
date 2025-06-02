@@ -1083,10 +1083,10 @@
     "currency": "USDT",
     "min_size": "0.00010000",
     "max_size": "900000.00000000",
-    "min_total": "10.00000000",
+    "min_total": "1.00000000",
     "increment": "0.01000000",
     "asset_increment": "0.00010000",
-    "label": "BNB/USDT"
+    "label": "BSUI/USDT"
   },
   {
     "id": "VENBNB",

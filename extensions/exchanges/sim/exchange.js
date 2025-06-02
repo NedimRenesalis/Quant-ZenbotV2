@@ -42,7 +42,12 @@ module.exports = function sim (conf, s) {
 
     getTrades: function (opts, cb) {
       if (so.mode === 'paper') {
-        return real_exchange.getTrades(opts, cb)
+        // Ensure opts has the selector property that some exchanges might expect
+        var enhanced_opts = Object.assign({}, opts)
+        if (!enhanced_opts.selector && so.selector) {
+          enhanced_opts.selector = so.selector
+        }
+        return real_exchange.getTrades(enhanced_opts, cb)
       }
       else {
         return cb(null, [])
@@ -50,28 +55,36 @@ module.exports = function sim (conf, s) {
     },
 
     getBalance: function (opts, cb) {
-      setTimeout(function() {
+      // Remove artificial delay in simulation
+      setImmediate(function() {
         s.sim_asset = balance.asset
         return cb(null, balance)
-      }, latency)
+      })
     },
 
     getQuote: function (opts, cb) {
       if (so.mode === 'paper') {
-        return real_exchange.getQuote(opts, cb)
+        // Ensure opts has the selector property that some exchanges might expect
+        var enhanced_opts = Object.assign({}, opts)
+        if (!enhanced_opts.selector && so.selector) {
+          enhanced_opts.selector = so.selector
+        }
+        return real_exchange.getQuote(enhanced_opts, cb)
       }
       else {
-        setTimeout(function() {
+        // Remove artificial delay in simulation
+        setImmediate(function() {
           return cb(null, {
             bid: s.period.close,
             ask: s.period.close
           })
-        }, latency)
+        })
       }
     },
 
     cancelOrder: function (opts, cb) {
-      setTimeout(function() {
+      // Remove artificial delay in simulation
+      setImmediate(function() {
         var order_id = '~' + opts.order_id
         var order = orders[order_id]
 
@@ -82,11 +95,12 @@ module.exports = function sim (conf, s) {
         }
 
         cb(null)
-      }, latency)
+      })
     },
 
     buy: function (opts, cb) {
-      setTimeout(function() {
+      // Remove artificial delay in simulation
+      setImmediate(function() {
         if (so.debug) console.log(`buying ${opts.size * opts.price} vs on hold: ${balance.currency} - ${balance.currency_hold} = ${balance.currency - balance.currency_hold}`)
         if (opts.size * opts.price > (balance.currency - balance.currency_hold)) {
           if (so.debug) console.log('nope')
@@ -117,11 +131,12 @@ module.exports = function sim (conf, s) {
         openOrders['~' + result.id] = order
         recalcHold()
         cb(null, order)
-      }, latency)
+      })
     },
 
     sell: function (opts, cb) {
-      setTimeout(function() {
+      // Remove artificial delay in simulation
+      setImmediate(function() {
         if (so.debug) console.log(`selling ${opts.size} vs on hold: ${balance.asset} - ${balance.asset_hold} = ${balance.asset - balance.asset_hold}`)
         if (opts.size > (balance.asset - balance.asset_hold)) {
           if (so.debug) console.log('nope')
@@ -151,19 +166,25 @@ module.exports = function sim (conf, s) {
         openOrders['~' + result.id] = order
         recalcHold()
         cb(null, order)
-      }, latency)
+      })
     },
 
     getOrder: function (opts, cb) {
-      setTimeout(function() {
+      // Remove artificial delay in simulation
+      setImmediate(function() {
         var order = orders['~' + opts.order_id]
         cb(null, order)
-      }, latency)
+      })
     },
 
     setFees: function(opts) {
       if (so.mode === 'paper') {
-        return real_exchange.setFees(opts)
+        // Ensure opts has the selector property that some exchanges might expect
+        var enhanced_opts = Object.assign({}, opts)
+        if (!enhanced_opts.selector && so.selector) {
+          enhanced_opts.selector = so.selector
+        }
+        return real_exchange.setFees(enhanced_opts)
       }
     },
 

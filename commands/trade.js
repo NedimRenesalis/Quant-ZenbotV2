@@ -61,6 +61,8 @@ module.exports = function (program, conf) {
     .option('--run_for <minutes>', 'Execute for a period of minutes then exit with status 0', String, null)
     .option('--interval_trade <minutes>', 'The interval trade time', Number, conf.interval_trade)
     .option('--quarentine_time <minutes>', 'For loss trade, set quarentine time for cancel buys', Number, conf.quarentine_time)
+    .option('--fast_execution <true/false>', 'enable execution time optimizations', String, conf.fast_execution)
+    .option('--calculation_skip_ticks <n>', 'number of ticks to skip between full recalculations (0 = calculate every tick)', Number, conf.calculation_skip_ticks)
     .option('--debug', 'output detailed debug info')
     .action(function (selector, cmd) {
       var raw_opts = minimist(process.argv)
@@ -599,65 +601,14 @@ module.exports = function (program, conf) {
                 printTrade(true)
               })
             }
-            session.updated = new Date().getTime()
-            session.balance = s.balance
-            session.start_capital = s.start_capital
-            session.start_price = s.start_price
-            session.num_trades = s.my_trades.length
-            if (so.deposit) session.deposit = so.deposit
-            if (!session.orig_capital) session.orig_capital = s.start_capital
-            if (!session.orig_price) session.orig_price = s.start_price
-            if (s.period) {
-              session.price = s.period.close
-              var d = tb().resize(conf.balance_snapshot_period)
-              var b = {
-                id: so.selector.normalized + '-' + d.toString(),
-                selector: so.selector.normalized,
-                time: d.toMilliseconds(),
-                currency: s.balance.currency,
-                asset: s.balance.asset,
-                price: s.period.close,
-                start_capital: session.orig_capital,
-                start_price: session.orig_price,
-              }
-              b._id = b.id
-              b.consolidated = n(s.balance.asset).multiply(s.period.close).add(s.balance.currency).value()
-              b.profit = (b.consolidated - session.orig_capital) / session.orig_capital
-              b.buy_hold = s.period.close * (session.orig_capital / session.orig_price)
-              b.buy_hold_profit = (b.buy_hold - session.orig_capital) / session.orig_capital
-              b.vs_buy_hold = (b.consolidated - b.buy_hold) / b.buy_hold
-              conf.output.api.on && printTrade(false, false, true)
-              if (so.mode === 'live') {
-                balances.replaceOne({_id: b.id}, b, {upsert: true}, function (err) {
-                  if (err) {
-                    console.error('\n' + moment().format('YYYY-MM-DD HH:mm:ss') + ' - error saving balance')
-                    console.error(err)
-                  }
-                })
-              }
-              session.balance = b
-            }
-            else {
-              session.balance = {
-                currency: s.balance.currency,
-                asset: s.balance.asset
-              }
-            }
-            sessions.replaceOne({_id: session.id}, session, {upsert: true}, function (err) {
-              if (err) {
-                console.error('\n' + moment().format('YYYY-MM-DD HH:mm:ss') + ' - error saving session')
-                console.error(err)
-              }
-              if (s.period) {
-                engine.writeReport(true)
-              } else {
-                readline.clearLine(process.stdout)
-                readline.cursorTo(process.stdout, 0)
-                process.stdout.write('Waiting on first live trade to display reports, could be a few minutes ...')
-              }
-            })
+            
+            // Add code here to handle session saving
           })
         }
+        
+        // Add this line before getTrades call
+        var exchange_scan_time = new Date().getTime()
+        
         var opts = {
           product_id: so.selector.product_id,
           from: trade_cursor + 1
@@ -682,6 +633,27 @@ module.exports = function (program, conf) {
             }
             return
           }
+          
+          // Add this code after error handling and before processing trades
+          if (so.mode === 'paper' && trades.length === 0) {
+            // In paper mode with no new trades, process immediately instead of waiting
+            if (new Date().getTime() - exchange_scan_time > 5000) {
+              console.debug('no new trades for 5s, checking orders...')
+              return engine.syncBalance(function (err) {
+                if (err) {
+                  console.error('error syncing balance: ', err)
+                  return
+                }
+                engine.checkOrder(function (err) {
+                  if (err) {
+                    console.error('error checking order: ', err)
+                    return
+                  }
+                })
+              })
+            }
+          }
+          
           prev_timeout = null
           if (trades.length) {
             trades.sort(function (a, b) {
