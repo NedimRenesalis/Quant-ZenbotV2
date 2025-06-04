@@ -1,3 +1,4 @@
+
 let z = require('zero-fill')
   , n = require('numbro')
   , ema = require('../../../lib/ema')
@@ -45,11 +46,11 @@ module.exports = {
     this.option('srsi_k', '%K line', Number, 3)
     this.option('srsi_d', '%D line', Number, 2)
     
-    // Signal thresholds - Relaxed for more frequent signals
-    this.option('oversold_rsi', 'buy when RSI reaches or drops below this value', Number, 25)
-    this.option('overbought_rsi', 'sell when RSI reaches or goes above this value', Number, 75)
-    this.option('oversold_cci', 'buy when CCI reaches or drops below this value', Number, -70)
-    this.option('overbought_cci', 'sell when CCI reaches or goes above this value', Number, 120)
+    // Signal thresholds - Further relaxed for HFT frequency
+    this.option('oversold_rsi', 'buy when RSI reaches or drops below this value', Number, 35)
+    this.option('overbought_rsi', 'sell when RSI reaches or goes above this value', Number, 65)
+    this.option('oversold_cci', 'buy when CCI reaches or drops below this value', Number, -50)
+    this.option('overbought_cci', 'sell when CCI reaches or goes above this value', Number, 100)
     this.option('constant', 'constant for CCI calculation', Number, 0.015)
     
     // Risk management settings
@@ -60,14 +61,14 @@ module.exports = {
     this.option('risk_per_trade_pct', 'percentage of capital to risk per trade', Number, 0.7)
     
     // Signal confirmation settings
-    this.option('confirmation_periods', 'number of periods to confirm reversal', Number, 0)
+    this.option('confirmation_periods', 'number of periods to confirm reversal', Number, 1)
     this.option('divergence_lookback', 'number of periods to look back for divergence', Number, 5)
     
     // New features for enhanced risk management
     this.option('dynamic_stop_loss', 'enable dynamic stop loss based on volatility', Boolean, true)
     this.option('stop_loss_volatility_factor', 'factor to multiply volatility for stop loss', Number, 0.5)
     this.option('max_hold_periods', 'maximum periods to hold a position', Number, 20)
-    this.option('volume_filter', 'enable volume-based signal filtering', Boolean, true)
+    this.option('volume_filter', 'enable volume-based signal filtering', Boolean, false)
     this.option('min_volume_factor', 'minimum volume factor for signal confirmation', Number, 1.2)
     this.option('volume_lookback', 'number of periods to look back for volume analysis', Number, 5)
     this.option('adaptive_position_sizing', 'enable adaptive position sizing', Boolean, true)
@@ -429,34 +430,8 @@ module.exports = {
         
         // Volume-based signal filtering
         if (s.signal === 'buy' && s.options.volume_filter) {
-          // Apply volume filtering based on relative volume
-          if (s.relative_volume !== undefined) {
-            if (s.relative_volume < s.options.min_volume_factor) {
-              // Insufficient volume compared to average, cancel signal
-              s.signal = null
-              s.volume_filter_applied = true
-              s.volume_filter_reason = 'low_relative_volume'
-            }
-          }
-          // Apply volume filtering based on volume change
-          else if (s.volume_change !== undefined) {
-            if (s.volume_change < (s.options.min_volume_factor - 1)) {
-              // Insufficient volume increase, cancel signal
-              s.signal = null
-              s.volume_filter_applied = true
-              s.volume_filter_reason = 'low_volume_change'
-            }
-          }
-          
-          // Additional volume trend check for buy signals
-          if (s.signal === 'buy' && s.volume_increasing !== undefined && !s.volume_increasing) {
-            // Volume is decreasing, which is not ideal for buy signals
-            // Make filtering stricter in this case
-            if (s.relative_volume !== undefined && s.relative_volume < s.options.min_volume_factor * 1.2) {
-              s.signal = null
-              s.volume_filter_applied = true
-              s.volume_filter_reason = 'decreasing_volume'
-            }
+          if (s.relative_volume < s.options.min_volume_factor) {
+            s.signal = null // CANCELS THE SIGNAL!
           }
         }
         

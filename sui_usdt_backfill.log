@@ -1,0 +1,13 @@
+[2025-06-04 14:41:50.031] INFO:  Logging to /home/crypto/Quant-ZenbotV2/sui_usdt_backfill.log
+[2025-06-04 14:41:50.033] INFO:  Backfill: SUI-USDT Historical Data
+[2025-06-04 14:41:50.033] INFO:  ==============================
+[2025-06-04 14:41:50.033] INFO:  Selector: binance.SUI-USDT
+[2025-06-04 14:41:50.033] INFO:  Period:   2025-06-03 14:41:50 to 2025-06-04 14:41:50
+[2025-06-04 14:41:50.034] INFO:  Days:     1
+[2025-06-04 14:41:50.034] INFO:  Batch size: 1000, Bulk size: 100, Rate limit: 1200ms
+[2025-06-04 14:41:50.034] INFO:  Parallel processes: 6
+[2025-06-04 14:41:50.035] WARN:  Force mode enabled - will overwrite existing data
+[2025-06-04 14:41:50.515] INFO:  Using exchange: binance
+[2025-06-04 14:41:50.515] INFO:  Exchange scan mode: forward
+[2025-06-04 14:41:50.515] INFO:  Connecting to MongoDB...
+[2025-06-04 14:42:20.639] ERROR: Failed to connect to MongoDB
